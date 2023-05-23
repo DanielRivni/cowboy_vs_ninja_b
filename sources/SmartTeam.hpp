@@ -13,8 +13,8 @@ namespace ariel
     {
     public:
         SmartTeam(Character *leader);
-        Character *findVictim(SmartTeam *enemy);
-        void *findLeader(SmartTeam *enemy);
+        Character *findVictim(SmartTeam *enemy, Character *attacker);
+        Character *findLeader(SmartTeam *enemy);
         void attack(SmartTeam *enemy);
     };
 }
