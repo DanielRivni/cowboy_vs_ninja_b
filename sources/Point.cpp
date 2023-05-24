@@ -2,6 +2,7 @@
 using namespace std;
 namespace ariel
 {
+    Point::Point() : xPoint(0), yPoint(0) {}
 
     Point::Point(double xPoint, double yPoint) : xPoint(xPoint), yPoint(yPoint) {}
     double Point::distance(const Point &other) const

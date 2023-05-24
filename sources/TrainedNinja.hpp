@@ -1,7 +1,6 @@
 #ifndef TRAINEDNINJA_H
 #define TRAINEDNINJA_H
 #include <iostream>
-#include <sstream>
 #include <stdexcept>
 #include "Ninja.hpp"
 
@@ -11,9 +10,13 @@ namespace ariel
     {
     public:
         TrainedNinja(std::string name, Point location);
-        ~TrainedNinja() override;
+        // for tidy to work
+        ~TrainedNinja() override = default;
+        TrainedNinja(const TrainedNinja &) = default;
+        TrainedNinja &operator=(const TrainedNinja &) = default;
+        TrainedNinja(TrainedNinja &&) noexcept = default;
+        TrainedNinja &operator=(TrainedNinja &&) noexcept = default;
     };
-
 }
 
 #endif

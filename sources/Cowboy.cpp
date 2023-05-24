@@ -5,6 +5,31 @@ namespace ariel
     // Constructors
     Cowboy::Cowboy(string name, Point location) : Character(name, location, 110), bullets(6) {}
 
+    // for the tidy to pass
+    Cowboy::Cowboy(const Cowboy &other) : Character(other), bullets(other.bullets) {}
+
+    Cowboy &Cowboy::operator=(const Cowboy &other)
+    {
+        if (this != &other)
+        {
+            Character::operator=(other);
+            bullets = other.bullets;
+        }
+        return *this;
+    }
+
+    Cowboy::Cowboy(Cowboy &&other) noexcept : Character(move(other)), bullets(move(other.bullets)) {}
+
+    Cowboy &Cowboy::operator=(Cowboy &&other) noexcept
+    {
+        if (this != &other)
+        {
+            Character::operator=(move(other));
+            bullets = move(other.bullets);
+        }
+        return *this;
+    }
+
     Cowboy::~Cowboy() {}
 
     // Functions

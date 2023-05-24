@@ -4,6 +4,59 @@ namespace ariel
 {
 
     Character::Character(string name, Point location, int health) : name(name), location(location), health(health) {}
+
+    // for tidy to pass
+    Character::Character(const Character &other)
+    {
+        name = other.name;
+        location = other.location;
+        health = other.health;
+        inTeam = other.inTeam;
+    }
+
+    Character &Character::operator=(const Character &other)
+    {
+        if (this == &other)
+        {
+            return *this;
+        }
+
+        name = other.name;
+        location = other.location;
+        health = other.health;
+        inTeam = other.inTeam;
+
+        return *this;
+    }
+
+    Character::Character(Character &&other) noexcept
+    {
+        name = move(other.name);
+        location = move(other.location);
+        health = other.health;
+        inTeam = other.inTeam;
+
+        other.health = 0;
+        other.inTeam = false;
+    }
+
+    Character &Character::operator=(Character &&other) noexcept
+    {
+        if (this == &other)
+        {
+            return *this;
+        }
+        name = move(other.name);
+        location = move(other.location);
+        health = other.health;
+        inTeam = other.inTeam;
+
+        other.health = 0;
+        other.inTeam = false;
+
+        return *this;
+    }
+
     Character::~Character() {}
 
     bool Character::isAlive() const

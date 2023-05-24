@@ -26,6 +26,10 @@ namespace ariel
 
     public:
         Team(Character *leader);
+        Team(const Team &) = default;
+        Team &operator=(const Team &) = default;
+        Team(Team &&) noexcept = default;
+        Team &operator=(Team &&) noexcept = default;
         virtual ~Team();
         virtual void add(Character *character);
         void attack(Team *enemy);

@@ -14,6 +14,8 @@ namespace ariel
         double yPoint;
 
     public:
+        Point();
+
         Point(double xPoint, double yPoint);
         double distance(const Point &other) const;
         void print() const;

@@ -5,7 +5,43 @@ namespace ariel
     // Constructors
     Ninja::Ninja(string name, Point location, int HealthPoints, int speed) : Character(name, location, HealthPoints), speed(speed) {}
 
-    Ninja::~Ninja() {}
+    // for tidy to pass
+    Ninja::Ninja(const Ninja &other)
+        : Character(other), speed(other.speed) {}
+
+    Ninja &Ninja::operator=(const Ninja &other)
+    {
+        if (this != &other)
+        {
+            Character::operator=(other);
+            speed = other.speed;
+        }
+        return *this;
+    }
+
+    Ninja::Ninja(Ninja &&other) noexcept
+        : Character(std::move(other.getName()), std::move(other.getLocation()), other.getHealth()),
+          speed(std::move(other.speed))
+    {
+        other.setHealth(0);
+        other.setInTeam(false);
+    }
+
+    Ninja &Ninja::operator=(Ninja &&other) noexcept
+    {
+        if (this != &other)
+        {
+            Character::operator=(std::move(other));
+            speed = std::move(other.speed);
+
+            // Reset the source object
+            other.setHealth(0);
+            other.setInTeam(false);
+        }
+        return *this;
+    }
+
+        Ninja::~Ninja() {}
     // Functions
     void Ninja::move(Character *enemy)
     {

@@ -16,7 +16,13 @@ namespace ariel
 
     public:
         Ninja(std::string name, Point location, int health, int speed);
-        virtual ~Ninja() override;
+        // for tidy to pass
+        Ninja(const Ninja &other);
+        Ninja &operator=(const Ninja &other);
+        Ninja(Ninja &&other) noexcept;
+        Ninja &operator=(Ninja &&other) noexcept;
+
+        ~Ninja() override;
         virtual void move(Character *enemy);
         virtual void slash(Character *enemy);
         int getSpeed() const;

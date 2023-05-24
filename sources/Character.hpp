@@ -19,6 +19,12 @@ namespace ariel
 
     public:
         Character(std::string name, Point location, int health);
+        // for tidy to pass
+        Character(const Character &other);
+        Character &operator=(const Character &other);
+        Character(Character &&other) noexcept;
+        Character &operator=(Character &&other) noexcept;
+
         virtual ~Character();
         virtual bool isAlive() const;
         virtual double distance(const Character *other) const;

@@ -16,6 +16,13 @@ namespace ariel
 
     public:
         Cowboy(std::string name, Point location);
+
+        // for the tidy to pass
+        Cowboy(const Cowboy &other);
+        Cowboy &operator=(const Cowboy &other);
+        Cowboy(Cowboy &&other) noexcept;
+        Cowboy &operator=(Cowboy &&other) noexcept;
+
         ~Cowboy() override;
         void shoot(Character *enemy);
         bool hasboolets() const;
